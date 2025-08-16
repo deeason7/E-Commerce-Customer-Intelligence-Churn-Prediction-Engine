@@ -74,6 +74,8 @@ Uncovered hidden product relationships to power cross-selling strategies.
 
 ---
 
+[📊 Final Presentation](https://github.com/deeason7/E-Commerce-Customer-Intelligence-Churn-Prediction-Engine/tree/main/docs)
+
 ## How to Run This Project
 
 1.  **Clone the repository:**
