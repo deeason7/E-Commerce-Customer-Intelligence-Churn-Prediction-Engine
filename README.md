@@ -2,9 +2,22 @@
 
 ## Project Overview
 
-This project transforms raw transactional data from a UK-based online retailer into a powerful **Customer Decision Intelligence Engine**. Moving beyond standard historical reporting, this analysis builds a comprehensive suite of tools to enable proactive, data-driven strategies.
 
-The core of this project involves a deep dive into customer behavior to perform advanced segmentation, predict future customer value, identify churn risk, and uncover hidden product affinities. The final output is a set of actionable models and insights that can directly inform marketing, sales, and inventory management strategies to boost profitability and enhance customer retention.
+This project transforms raw transactional data from a UK-based online retailer into a powerful **Customer Decision Intelligence Engine**. Moving beyond standard historical reporting, this project culminates in an interactive, multi-page Flask dashboard that provides actionable insights for proactive, data-driven strategies.
+
+The core of this project involves a deep dive into customer behavior to perform advanced segmentation, predict future customer value, identify churn risk, and uncover hidden product affinities. The final output is an intuitive web application that directly informs marketing, sales, and inventory management strategies to boost profitability and enhance customer retention.
+
+---
+
+## Interactive Dashboard
+
+The primary deliverable is a multi-page Flask web application designed for non-technical stakeholders, featuring:
+
+* **Executive Home Page:** An at-a-glance overview of key business metrics, including total revenue, unique customers, and overall transaction volume, alongside a trend chart of monthly sales.
+* **Churn Analysis Page:** A deep dive into customer retention, featuring an RFM segment treemap color-coded by revenue, a feature importance chart showing the key drivers of churn, and a searchable table of all customers with their churn probability.
+* **Affinity Analysis Page:** An interactive tool to explore market basket insights. Users can select any product from a dropdown menu to instantly see a bar chart and recommendation cards detailing the top associated items.
+
+
 
 ---
 
@@ -21,17 +34,18 @@ This project was designed to answer critical, high-level business questions:
 
 ## Tech Stack
 
-* **Data Manipulation & Analysis:** `pandas`, `numpy`
-* **Statistical Analysis:** `scipy`, `statsmodels`
-* **Machine Learning:** `scikit-learn`
-* **Market Basket Analysis:** `mlxtend`
-* **Visualization:** `matplotlib`, `seaborn`, `squarify`
+* **Data Manipulation & Analysis:** pandas, numpy
+* **Statistical Analysis:** scipy, statsmodels
+* **Machine Learning:** scikit-learn
+* **Market Basket Analysis:** mlxtend
+* **Web Dashboard:** Flask
+* **Interactive Visualization:** Plotly, Matplotlib, Seaborn
 
 ---
 
 ## Project Workflow & Methodology
 
-The project follows a multi-phase, agile workflow, moving from foundational data engineering to advanced predictive modeling.
+The project follows a multi-phase, agile workflow, moving from foundational data engineering to advanced predictive modeling and final model deployment.
 
 ### 1: Data Engineering & Advanced Exploratory Data Analysis (EDA)
 
@@ -93,5 +107,13 @@ Uncovered hidden product relationships to power cross-selling strategies.
     pip install -r requirements.txt
     ```
 4.  **Run the notebooks:** Open the notebooks in the `notebooks/` directory and run the cells sequentially, starting with `Preprocessing.ipynb`.
+
+5. **Navigate to the dashboard directory and run the app:**
+    ```bash
+    cd ecommerce-dashboard
+    python run.py
+    ```
+
+6.  Open your web browser and go to **`http://127.0.0.1:5001`** to view the live dashboard.  
 
 ---
