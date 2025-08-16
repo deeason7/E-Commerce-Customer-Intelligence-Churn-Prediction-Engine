@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Predictive Churn Modeling</h2>
+        <p class="text-center">This section provides a deep dive into customer churn, identifying at-risk customers and the key behaviors that predict churn.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ treemap|safe }}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ feature_importance_chart|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header"><h5>At-Risk Customer Details</h5></div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    {{ churn_table|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

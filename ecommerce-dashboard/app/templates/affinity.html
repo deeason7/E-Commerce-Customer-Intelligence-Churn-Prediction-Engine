@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-2">Market Basket & Affinity Analysis</h2>
+        <p class="text-center text-muted">
+            This tool uncovers "if-then" purchasing patterns from your sales data. Use the selector below to find out what products customers are most likely to buy after adding a specific item to their cart.
+        </p>
+    </div>
+</div>
+
+<div class="card my-4">
+    <div class="card-header"><h5>Product Recommendation Finder</h5></div>
+    <div class="card-body">
+        <form method="GET" action="{{ url_for('main.affinity_analysis') }}" class="row align-items-end">
+            <div class="col-md-10"><label for="product" class="form-label">Select a Product:</label>
+                <select class="form-select" name="product" id="product">
+                    <option selected disabled>Choose a product...</option>
+                    {% for product in product_list %}<option value="{{ product }}" {% if product == selected_product %}selected{% endif %}>{{ product }}</option>{% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Find Recommendations</button></div>
+        </form>
+    </div>
+</div>
+
+{% if selected_product %}
+<div class="row mt-4">
+    <div class="col-12"><h4>Recommendations for: <span class="text-primary">{{ selected_product }}</span></h4><hr></div>
+
+    {% if recommendations %}
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    {{ bar_chart|safe }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            {% for rec in recommendations[:5] %} <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ rec.item }}</h5>
+                    <p class="card-text mb-0">Customers are <strong>{{ rec.lift }} times more likely</strong> to buy this.</p>
+                </div>
+                <div class="card-footer text-muted small">Confidence: {{ rec.confidence }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="col-12"><p>No significant recommendations found for this product.</p></div>
+    {% endif %}
+</div>
+{% endif %}
+
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="text-center">Actionable Strategic Recommendations</h3>
+        <p class="text-center text-muted">Based on the analysis, here are three immediate strategies to increase revenue.</p>
+        <div class="accordion" id="recommendationsAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">1. Product Bundling</button></h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#recommendationsAccordion">
+                    <div class="accordion-body">Create virtual bundles on the website (e.g., a "Red Spotty Party Pack") for products with high lift and confidence to increase the average order value.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">2. Smarter Website Recommendations</button></h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#recommendationsAccordion">
+                    <div class="accordion-body">Update the "You might also like..." feature to explicitly use these rules. When a customer adds "SET/6 RED SPOTTY PAPER PLATES" to their cart, the first item recommended should be the matching cups.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">3. Targeted Marketing</button></h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#recommendationsAccordion">
+                    <div class="accordion-body">Create targeted follow-up email campaigns. If a customer buys a "WOODEN STAR CHRISTMAS SCANDINAVIAN," send them an automated email a day later showcasing the matching "WOODEN TREE."</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

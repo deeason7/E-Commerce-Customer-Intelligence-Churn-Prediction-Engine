@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Business Overview</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total Revenue</div>
+            <div class="card-body"><h4 class="card-title">${{ "{:,.2f}".format(kpis.total_revenue) }}</h4></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Unique Customers</div>
+            <div class="card-body"><h4 class="card-title">{{ "{:,}".format(kpis.unique_customers) }}</h4></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">Total Transactions</div>
+            <div class="card-body"><h4 class="card-title">{{ "{:,}".format(kpis.total_transactions) }}</h4></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ sales_chart|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
